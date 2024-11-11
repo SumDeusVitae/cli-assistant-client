@@ -1,27 +1,29 @@
 package main
 
 import (
-	"os"
-
 	"github.com/SumDeusVitae/cli-assistant-client/internal/assistant"
+	"github.com/SumDeusVitae/cli-assistant-client/internal/variables"
 )
 
 type config struct {
 	assistantClient assistant.Client
-	Login           string
-	Passwod         string
-	Api             string
-	UserID          string
+	Variables       struct {
+		Login    string
+		Password string
+		Api      string
+		UserID   string
+	}
 }
 
 func main() {
 	cliClient := assistant.NewClient()
 	cfg := &config{
 		assistantClient: cliClient,
-		Login:           os.Getenv("LOGIN"),
-		Passwod:         os.Getenv("PASSWORD"),
-		Api:             os.Getenv("MY_API_KEY"),
-		UserID:          os.Getenv("USER_ID"),
 	}
+	cfg.Variables.Login = variables.LoadoadVariable("login")
+	cfg.Variables.Password = variables.LoadoadVariable("password")
+	cfg.Variables.Api = variables.LoadoadVariable("apiKey")
+	cfg.Variables.UserID = variables.LoadoadVariable("userId")
+
 	runRep(cfg)
 }

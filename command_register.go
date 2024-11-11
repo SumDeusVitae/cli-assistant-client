@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/SumDeusVitae/cli-assistant-client/internal/variables"
 )
 
 type RegistrationRespond struct {
@@ -14,47 +16,53 @@ type RegistrationRespond struct {
 
 func callbackRegister(cfg *config, args ...string) error {
 	// Login and Password
-	cfg.Login = enterValid("Login")
-	err := os.Setenv("LOGIN", cfg.Login)
-	if err != nil {
-		log.Println("Couldn't save login to the environment")
-	}
-	log.Println("Login successfully saved to the environment")
-	cfg.Passwod = enterValid("Password")
-	err = os.Setenv("PASSWORD", cfg.Passwod)
-	if err != nil {
-		log.Println("Couldn't save password to the environment")
-	}
-	log.Println("Password successfully saved to the environment")
+	cfg.Variables.Login = enterValid("Login")
+	// log.Println("Login successfully saved to the environment")
+	cfg.Variables.Password = enterValid("Password")
+
+	// log.Println("Password successfully saved to the environment")
 
 	// Email optional
 	var email string
 	fmt.Println("Please enter Email, will be helpfull if you lose your password")
-	_, err = fmt.Scanln(&email)
+	_, err := fmt.Scanln(&email)
 	if err != nil {
 		fmt.Println("Error reading input:", err)
 	}
 	//
 	// serverResp := RegistrationRespond{}
-	serverResp, err := cfg.assistantClient.Register(cfg.Login, cfg.Passwod, email)
+	serverResp, err := cfg.assistantClient.Register(cfg.Variables.Login, cfg.Variables.Password, email)
 	if err != nil {
 		return err
 	}
-	err = os.Setenv("USER_ID", serverResp.UserID)
-	if err != nil {
-		log.Println("Couldn't save UserID to the environment")
-	}
-	log.Println("UserID successfully saved to the environment")
-
-	err = os.Setenv("MY_API_KEY", serverResp.APIKey)
-	if err != nil {
-		log.Println("Couldn't save Api key to the environment")
-	}
-	log.Println("Api key successfully saved to the environment")
-
 	fmt.Println("Successfully registerd")
-	fmt.Printf("UserID: %s\n", serverResp.UserID)
+	// SAVING VARIABLES TO LOCAL
+
 	fmt.Printf("Api Key: %s\n", serverResp.APIKey)
+	// saved to cfg
+	cfg.Variables.Api = serverResp.APIKey
+	err = variables.SaveVariable("apiKey", serverResp.APIKey)
+	if err != nil {
+		log.Println("Couldn't save api to local variable")
+	}
+	//
+	fmt.Printf("UserID: %s\n", serverResp.UserID)
+	cfg.Variables.UserID = serverResp.UserID
+	err = variables.SaveVariable("userId", serverResp.UserID)
+	if err != nil {
+		log.Println("Couldn't save user id to local variable")
+	}
+	//
+	err = variables.SaveVariable("login", cfg.Variables.Login)
+	if err != nil {
+		log.Println("Couldn't save login to local variable")
+	}
+
+	err = variables.SaveVariable("password", cfg.Variables.Password)
+	if err != nil {
+		log.Println("Couldn't save password to local variable")
+	}
+
 	return nil
 }
 
