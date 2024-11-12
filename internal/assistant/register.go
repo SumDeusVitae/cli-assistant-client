@@ -49,7 +49,7 @@ func (c *Client) Register(login, password, email string) (RegistrationRespond, e
 		return RegistrationRespond{}, err
 	}
 	defer res.Body.Close()
-	if res.StatusCode != http.StatusOK {
+	if res.StatusCode != http.StatusCreated {
 		return RegistrationRespond{}, fmt.Errorf("unexpected status code: %d", res.StatusCode)
 	}
 	// Decode response into RegistrationRespond struct
@@ -68,14 +68,5 @@ func (c *Client) Register(login, password, email string) (RegistrationRespond, e
 		return RegistrationRespond{}, err
 	}
 	return createdRespond, nil
-
-	// Decode response into RegistrationRespond struct
-	// var createdRespond RegistrationRespond
-	// decoder := json.NewDecoder(res.Body)
-	// err = decoder.Decode(&createdRespond)
-	// if err != nil {
-	// 	return RegistrationRespond{}, err
-	// }
-	// return createdRespond, nil
 
 }

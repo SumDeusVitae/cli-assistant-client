@@ -5,14 +5,10 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/SumDeusVitae/cli-assistant-client/internal/variables"
 )
-
-type RegistrationRespond struct {
-	UserID string `json:"user_id"`
-	APIKey string `json:"api_key"`
-}
 
 func callbackRegister(cfg *config, args ...string) error {
 	// Login and Password
@@ -23,14 +19,13 @@ func callbackRegister(cfg *config, args ...string) error {
 	// log.Println("Password successfully saved to the environment")
 
 	// Email optional
-	var email string
+	email := ""
 	fmt.Println("Please enter Email, will be helpfull if you lose your password")
-	_, err := fmt.Scanln(&email)
-	if err != nil {
-		fmt.Println("Error reading input:", err)
-	}
+	reader := bufio.NewReader(os.Stdin)
+	email, _ = reader.ReadString('\n')
+	email = strings.TrimSpace(email)
 	//
-	// serverResp := RegistrationRespond{}
+
 	serverResp, err := cfg.assistantClient.Register(cfg.Variables.Login, cfg.Variables.Password, email)
 	if err != nil {
 		return err
@@ -46,9 +41,9 @@ func callbackRegister(cfg *config, args ...string) error {
 		log.Println("Couldn't save api to local variable")
 	}
 	//
-	fmt.Printf("UserID: %s\n", serverResp.UserID)
-	cfg.Variables.UserID = serverResp.UserID
-	err = variables.SaveVariable("userId", serverResp.UserID)
+	fmt.Printf("UserID: %s\n", serverResp.ID)
+	cfg.Variables.UserID = serverResp.ID
+	err = variables.SaveVariable("userId", serverResp.ID)
 	if err != nil {
 		log.Println("Couldn't save user id to local variable")
 	}

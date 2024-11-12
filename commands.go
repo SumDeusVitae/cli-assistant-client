@@ -28,5 +28,15 @@ func getCommands() map[string]cliCommand {
 			description: "checking environment variables",
 			callback:    callbackEnv,
 		},
+		"login": {
+			name:        "login",
+			description: "login to your account",
+			callback:    callbackLogin,
+		},
+		"q": {
+			name:        "q {question}",
+			description: "ask AI question, get reply",
+			callback:    callbackAsk,
+		},
 	}
 }

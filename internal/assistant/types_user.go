@@ -12,7 +12,14 @@ type RegistrationForm struct {
 }
 
 type RegistrationRespond struct {
-	UserID string `json:"user_id"`
+	ID        string    `json:"id"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+	Login     string    `json:"login"`
+	Email     struct {
+		String string `json:"String"`
+		Valid  bool   `json:"Valid"`
+	} `json:"email"`
 	APIKey string `json:"api_key"`
 }
 

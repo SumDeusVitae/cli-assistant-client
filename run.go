@@ -3,9 +3,11 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func runRep(cfg *config) {
+
 	args := []string{}
 	// Check if we have enough arguments (at least one argument beyond the program name)
 	if len(os.Args) < 2 {
@@ -20,7 +22,8 @@ func runRep(cfg *config) {
 
 	// Command based on the second argument
 	commandName := os.Args[1]
-
+	joinedArgs := strings.Join(os.Args[2:], " ")
+	args = strings.Fields(joinedArgs)
 	command, exists := getCommands()[commandName]
 	if exists {
 		err := command.callback(cfg, args...)
