@@ -30,10 +30,10 @@ func callbackRegister(cfg *config, args ...string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("Successfully registerd")
+	fmt.Printf("Successfully registerd: %s\n", cfg.Variables.Login)
 	// SAVING VARIABLES TO LOCAL
 
-	fmt.Printf("Api Key: %s\n", serverResp.APIKey)
+	// fmt.Printf("Api Key: %s\n", serverResp.APIKey)
 	// saved to cfg
 	cfg.Variables.Api = serverResp.APIKey
 	err = variables.SaveVariable("apiKey", serverResp.APIKey)
@@ -41,12 +41,14 @@ func callbackRegister(cfg *config, args ...string) error {
 		log.Println("Couldn't save api to local variable")
 	}
 	//
-	fmt.Printf("UserID: %s\n", serverResp.ID)
-	cfg.Variables.UserID = serverResp.ID
-	err = variables.SaveVariable("userId", serverResp.ID)
-	if err != nil {
-		log.Println("Couldn't save user id to local variable")
-	}
+	/*
+		fmt.Printf("UserID: %s\n", serverResp.ID)
+		cfg.Variables.UserID = serverResp.ID
+		err = variables.SaveVariable("userId", serverResp.ID)
+		if err != nil {
+			log.Println("Couldn't save user id to local variable")
+		}
+	*/
 	//
 	err = variables.SaveVariable("login", cfg.Variables.Login)
 	if err != nil {

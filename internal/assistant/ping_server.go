@@ -28,7 +28,10 @@ func (c *Client) HealthCheck() (string, error) {
 	if err != nil {
 		return "Couldn't unmarshal response", err
 	}
-	fmt.Printf("!!!! :%v\n", result)
-	return "should be good", nil
+	// fmt.("!!!! :%v\n", result)
+	if fmt.Sprintf("%v", result) == "map[status:ok]" {
+		return "GOOD", nil
+	}
+	return "Something Wrong", nil
 
 }

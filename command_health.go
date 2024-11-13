@@ -7,7 +7,7 @@ func callbackHealth(cfg *config, args ...string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("Message: %s\n", message)
+	fmt.Printf("Server status: %s\n", message)
 	return nil
 
 }

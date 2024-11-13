@@ -11,7 +11,7 @@ type config struct {
 		Login    string
 		Password string
 		Api      string
-		UserID   string
+		// UserID   string
 	}
 }
 
@@ -23,7 +23,7 @@ func main() {
 	cfg.Variables.Login = variables.LoadoadVariable("login")
 	cfg.Variables.Password = variables.LoadoadVariable("password")
 	cfg.Variables.Api = variables.LoadoadVariable("apiKey")
-	cfg.Variables.UserID = variables.LoadoadVariable("userId")
+	// cfg.Variables.UserID = variables.LoadoadVariable("userId")
 
 	runRep(cfg)
 }

@@ -50,6 +50,9 @@ func (c *Client) Register(login, password, email string) (RegistrationRespond, e
 	}
 	defer res.Body.Close()
 	if res.StatusCode != http.StatusCreated {
+		if res.StatusCode == http.StatusConflict {
+			return RegistrationRespond{}, fmt.Errorf("login already in use, please choose another")
+		}
 		return RegistrationRespond{}, fmt.Errorf("unexpected status code: %d", res.StatusCode)
 	}
 	// Decode response into RegistrationRespond struct

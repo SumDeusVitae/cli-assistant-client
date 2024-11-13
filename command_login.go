@@ -35,7 +35,7 @@ func callbackLogin(cfg *config, args ...string) error {
 
 	if cfg.Variables.Login != "" && cfg.Variables.Password != "" {
 		fmt.Println("Seems like you have saved Login & Password")
-		fmt.Println("Do you wish to use them to login? [Y/n]")
+		fmt.Println("Do you wish to use them? [Y/n]")
 		// Create reader
 		reader := bufio.NewReader(os.Stdin)
 		input, _ := reader.ReadString('\n')
@@ -85,12 +85,14 @@ func callbackLogin(cfg *config, args ...string) error {
 	if err != nil {
 		log.Println("Couldn't save api to local variable")
 	}
-	fmt.Printf("UserID: %s\n", serverResp.ID)
-	cfg.Variables.UserID = serverResp.ID
-	err = variables.SaveVariable("userId", serverResp.ID)
-	if err != nil {
-		log.Println("Couldn't save user id to local variable")
-	}
+	/*
+		fmt.Printf("UserID: %s\n", serverResp.ID)
+		cfg.Variables.UserID = serverResp.ID
+		err = variables.SaveVariable("userId", serverResp.ID)
+		if err != nil {
+			log.Println("Couldn't save user id to local variable")
+		}
+	*/
 
 	return nil
 }

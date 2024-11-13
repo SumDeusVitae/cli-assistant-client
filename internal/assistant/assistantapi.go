@@ -1,5 +1,5 @@
 package assistant
 
 const (
-	baseUrl = "http://localhost:8080/v1"
+	baseUrl = "https://cliassistantserver-702681145467.us-central1.run.app/v1"
 )

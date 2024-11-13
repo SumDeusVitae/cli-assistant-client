@@ -36,6 +36,9 @@ func (c *Client) Login(login, password string) (LoginRespond, error) {
 	}
 	defer res.Body.Close()
 	if res.StatusCode != http.StatusOK {
+		if res.StatusCode == http.StatusUnauthorized {
+			return LoginRespond{}, fmt.Errorf("wrong login or password")
+		}
 		return LoginRespond{}, fmt.Errorf("unexpected status code: %d", res.StatusCode)
 	}
 	// Decode

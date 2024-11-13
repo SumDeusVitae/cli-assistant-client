@@ -15,7 +15,8 @@ func callbackAsk(cfg *config, args ...string) error {
 
 	}
 	question := strings.Join(args, " ")
-	fmt.Println("Question: \n", question)
+	// fmt.Println("Question: \n", question)
+	fmt.Println("Working on respond...")
 	serverResp, err := cfg.assistantClient.Ask("gpt", cfg.Variables.Api, question)
 	if err != nil {
 		return err
