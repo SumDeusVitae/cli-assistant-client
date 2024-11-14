@@ -14,7 +14,7 @@ import (
 	"golang.org/x/mod/semver"
 )
 
-const repoOwner = "SumDeusVitae"
+const repoOwner = "sumdeusvitae"
 const repoName = "cli-assistant-client"
 
 type VersionInfo struct {
@@ -32,6 +32,7 @@ func FetchUpdateInfo(currentVersion string) VersionInfo {
 			FailedToFetch: err,
 		}
 	}
+
 	isUpdateRequired := isUpdateRequired(currentVersion, latest)
 	isOutdated := isOutdated(currentVersion, latest)
 	return VersionInfo{
@@ -42,11 +43,30 @@ func FetchUpdateInfo(currentVersion string) VersionInfo {
 	}
 }
 
+func CheckUpdate(current string) (bool, error) {
+	latest, err := getLatestVersion()
+	if err != nil {
+		return false, err
+	}
+	isUpdateRequired := isOutdated(current, latest)
+	return isUpdateRequired, nil
+
+}
+
+func CheckMajor(current string) (bool, error) {
+	latest, err := getLatestVersion()
+	if err != nil {
+		return false, err
+	}
+	isUpdateRequired := isUpdateRequired(current, latest)
+	return isUpdateRequired, nil
+}
+
 func (v *VersionInfo) PromptUpdateIfAvailable() {
 	if v.IsOutdated {
-		fmt.Fprintln(os.Stderr, "A new version of the <nam> CLI is available!")
+		fmt.Fprintln(os.Stderr, "A new version of the qs CLI is available!")
 		fmt.Fprintln(os.Stderr, "Please run the following command to update:")
-		fmt.Fprintf(os.Stderr, "  <name> upgrade\n\n")
+		fmt.Fprintf(os.Stderr, "  qs upgrade\n\n")
 	}
 }
 
@@ -88,7 +108,7 @@ func getLatestVersion() (string, error) {
 		modulePath := fmt.Sprintf("%s/%s", repoOwner, repoName)
 		encodedModulePath := url.PathEscape(modulePath)
 		url := fmt.Sprintf("%s/github.com/%s/@latest", proxy, encodedModulePath)
-		fmt.Printf("Trying proxy: %s\n", proxy)
+		// fmt.Printf("Trying proxy: %s\n", proxy)
 		var resp *http.Response
 		for retries := 0; retries < 3; retries++ {
 			resp, err = http.Get(url)
@@ -117,14 +137,15 @@ func getLatestVersion() (string, error) {
 			fmt.Printf("Error reading response body from %s: %v\n", url, err)
 			continue
 		}
-		fmt.Printf("Response body from %s:\n%s\n", url, string(body))
-		var version struct{ Version string }
-		if err = json.Unmarshal(body, &version); err != nil {
+		// fmt.Printf("Response body from %s:\n%s\n", url, string(body))
+		var ver struct{ Version string }
+		if err = json.Unmarshal(body, &ver); err != nil {
 			fmt.Printf("Error unmarshalling response from %s: %v\n", url, err)
 			continue
 		}
+		// fmt.Printf("VERSION!!!!: %s\n", ver.Version)
 
-		return version.Version, nil
+		return ver.Version, nil
 	}
 
 	return "", fmt.Errorf("failed to fetch latest version")

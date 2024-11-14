@@ -2,11 +2,13 @@ package main
 
 import (
 	_ "embed"
-	"os"
 	"strings"
+
+	"os"
 
 	"github.com/SumDeusVitae/cli-assistant-client/internal/assistant"
 	"github.com/SumDeusVitae/cli-assistant-client/internal/variables"
+	"github.com/SumDeusVitae/cli-assistant-client/internal/version"
 )
 
 type config struct {
@@ -16,11 +18,12 @@ type config struct {
 		Password string
 		Api      string
 		Version  string
+		Outdated bool
 	}
 }
 
 //go:embed version.txt
-var versionString string
+var ver string
 
 func main() {
 	cliClient := assistant.NewClient()
@@ -31,9 +34,15 @@ func main() {
 	cfg.Variables.Password = variables.LoadoadVariable("password")
 	cfg.Variables.Api = variables.LoadoadVariable("apiKey")
 	// cfg.Variables.UserID = variables.LoadoadVariable("userId")
-	err := callbackVer(cfg, strings.Trim(versionString, "\n"))
+	cfg.Variables.Version = strings.Trim(ver, "\n")
+	// fmt.Printf("version.txt context: %s\n", strings.Trim(ver, "\n"))
+	check, err := version.CheckMajor(cfg.Variables.Version)
 	if err != nil {
 		os.Exit(1)
+	}
+	if check {
+		outdated()
+		cfg.Variables.Outdated = true
 	}
 
 	runRep(cfg)

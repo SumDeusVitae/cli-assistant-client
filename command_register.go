@@ -11,6 +11,10 @@ import (
 )
 
 func callbackRegister(cfg *config, args ...string) error {
+	if cfg.Variables.Outdated {
+		outdated()
+		return nil
+	}
 	// Login and Password
 	cfg.Variables.Login = enterValid("Login")
 	// log.Println("Login successfully saved to the environment")

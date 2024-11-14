@@ -5,6 +5,10 @@ import (
 )
 
 func callbackWhoami(cfg *config, args ...string) error {
+	if cfg.Variables.Outdated {
+		outdated()
+		return nil
+	}
 
 	if cfg.Variables.Api == "" {
 		fmt.Println("You are not logged in please register or login")
