@@ -43,5 +43,10 @@ func getCommands() map[string]cliCommand {
 			description: "checks if you are logged in",
 			callback:    callbackWhoami,
 		},
+		"version": {
+			name:        "version",
+			description: "checks on version",
+			callback:    callbackVer,
+		},
 	}
 }
