@@ -2,7 +2,7 @@ name: Tag Releases
 
 on:
   push:
-    branches:    
+    branches:
       - 'main'
     paths:
       - 'version.txt'
@@ -15,8 +15,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - run: |
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: Create and push tag
+        run: |
           VERSION="$(cat version.txt)"
           git tag "$VERSION"
-          git push origin tag "$VERSION"
+          git push https://github.com/${{ github.repository }}.git tag "$VERSION"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
