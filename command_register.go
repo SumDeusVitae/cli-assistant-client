@@ -30,7 +30,7 @@ func callbackRegister(cfg *config, args ...string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("Successfully registerd: %s\n", cfg.Variables.Login)
+	fmt.Printf("Successfully registerd as: %s\n", cfg.Variables.Login)
 	// SAVING VARIABLES TO LOCAL
 
 	// fmt.Printf("Api Key: %s\n", serverResp.APIKey)

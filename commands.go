@@ -38,5 +38,10 @@ func getCommands() map[string]cliCommand {
 			description: "ask AI question, get reply",
 			callback:    callbackAsk,
 		},
+		"whoami": {
+			name:        "whoami",
+			description: "checks if you are logged in",
+			callback:    callbackWhoami,
+		},
 	}
 }

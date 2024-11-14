@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func (c *Client) Login(login, password string) (LoginRespond, error) {
+func (c *Client) Login(login, password string) (UserRespond, error) {
 	url := baseUrl + "/login"
 	// Building login form
 	loginForm := LoginForm{
@@ -19,12 +19,12 @@ func (c *Client) Login(login, password string) (LoginRespond, error) {
 	jsonData, err := json.Marshal(loginForm)
 	if err != nil {
 		log.Fatal(err)
-		return LoginRespond{}, err
+		return UserRespond{}, err
 	}
 	// New POST
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
 	if err != nil {
-		return LoginRespond{}, err
+		return UserRespond{}, err
 	}
 	// Set header
 	req.Header.Set("Content-Type", "application/json")
@@ -32,21 +32,21 @@ func (c *Client) Login(login, password string) (LoginRespond, error) {
 	// Send
 	res, err := c.httpClient.Do(req)
 	if err != nil {
-		return LoginRespond{}, err
+		return UserRespond{}, err
 	}
 	defer res.Body.Close()
 	if res.StatusCode != http.StatusOK {
 		if res.StatusCode == http.StatusUnauthorized {
-			return LoginRespond{}, fmt.Errorf("wrong login or password")
+			return UserRespond{}, fmt.Errorf("wrong login or password")
 		}
-		return LoginRespond{}, fmt.Errorf("unexpected status code: %d", res.StatusCode)
+		return UserRespond{}, fmt.Errorf("unexpected status code: %d", res.StatusCode)
 	}
 	// Decode
-	var createRespond LoginRespond
+	var createRespond UserRespond
 	decoder := json.NewDecoder(res.Body)
 	err = decoder.Decode(&createRespond)
 	if err != nil {
-		return LoginRespond{}, err
+		return UserRespond{}, err
 	}
 	return createRespond, nil
 
