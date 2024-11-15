@@ -8,6 +8,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Commands](#commands)
+- [Uninstall](#uninstall)
 - [Credit](#credit)
 - [License](#license)
 
@@ -107,8 +108,19 @@ qs q <your question here>
 - `update`:  Updates CLI to the latest version
 
 
+## Uninstall
+To uninstall CLI Assistant, follow the steps :
 
+  Locate the binary: Find the binary in your GOBIN or GOPATH/bin directory.
+  Remove the binary: Delete it from the terminal:
 
+```bash
+rm $(go env GOPATH)/bin/qs
+```
+  Remove the source code (optional):
+```bash
+rm -rf $(go env GOPATH)/src/github.com/SumDeusVitae/cli-assistant-client
+```
 
 
 
