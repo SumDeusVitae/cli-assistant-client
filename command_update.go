@@ -21,16 +21,23 @@ func callbackUpdate(cfg *config, args ...string) error {
 		if err != nil {
 			return err
 		}
+		command = exec.Command("sh", "-c", "mv $(go env GOPATH)/bin/cli-assistant-client $(go env GOPATH)/bin/qs")
+		_, err = command.Output()
+		if err != nil {
+			return err
+		}
+		// Get the new version info
+		command = exec.Command("qs", "version")
+		b, err := command.Output()
+		if err != nil {
+			return err
+		}
+		re := regexp.MustCompile(`v\d+\.\d+\.\d+`)
+		version := re.FindString(string(b))
+		fmt.Printf("Successfully upgraded to %s!\n", version)
+	} else {
+		fmt.Println("Latest version already installed!")
 	}
-	// Get the new version info
-	command := exec.Command("qs", "version")
-	b, err := command.Output()
-	if err != nil {
-		return err
-	}
-	re := regexp.MustCompile(`v\d+\.\d+\.\d+`)
-	version := re.FindString(string(b))
-	fmt.Printf("Successfully upgraded to %s!\n", version)
 
 	return nil
 
