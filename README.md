@@ -9,7 +9,7 @@
 - [Usage](#usage)
 - [Commands](#commands)
 - [Uninstall](#uninstall)
-- [Credit](#credit)
+- [Example](#example)
 - [License](#license)
 
 ## Introduction
@@ -122,10 +122,92 @@ rm $(go env GOPATH)/bin/qs
 rm -rf $(go env GOPATH)/src/github.com/SumDeusVitae/cli-assistant-client
 ```
 
+## Example
+<pre>
+user@DESKTOP:~/workspace$ qs q How do I add tag to git repo?
+Working on respond...
 
+Reply: 
+Adding a tag to a Git repository is a straightforward process. Tags are used to mark specific points in your repository’s history, often used to denote releases or important milestones.
 
-## Credit
-> [**chzyer**](https://github.com/chzyer/readline) >> for pure go(golang) implementation of GNU-Readline kind library 
+Here’s how to add a tag:
+
+### 1. Create a Tag
+
+You can create two types of tags in Git: lightweight and annotated.
+
+#### Lightweight Tag
+
+A lightweight tag is simply a pointer to a specific commit. It does not contain additional information such as the tagger's name or date.
+
+```bash
+git tag <tagname>
+```
+
+#### Annotated Tag
+
+Annotated tags are recommended for most cases, as they store additional metadata such as the tagger's name, email, date, and a message.
+
+```bash
+git tag -a <tagname> -m "Your message here"
+```
+
+### 2. List Tags
+
+To see the tags you've created, you can list them with:
+
+```bash
+git tag
+```
+
+### 3. Push Tags to Remote
+
+By default, tags are not pushed to remote repositories when you run `git push`. To push a specific tag to the remote repository, use:
+
+```bash
+git push origin <tagname>
+```
+
+If you want to push all tags at once, you can use:
+
+```bash
+git push --tags
+```
+
+### 4. Checkout a Tag
+
+To check out a specific tag (detached HEAD state), you can use the following command:
+
+```bash
+git checkout <tagname>
+```
+
+### Example
+
+Here’s a quick example of the entire process:
+
+1. Create a new tag:
+
+   ```bash
+   git tag -a v1.0 -m "Release version 1.0"
+   ```
+
+2. List tags to confirm:
+
+   ```bash
+   git tag
+   ```
+
+3. Push the tag to the remote repository:
+
+   ```bash
+   git push origin v1.0
+   ```
+</pre>
+
+### Conclusion
+
+That’s it! You have successfully created and pushed a tag to your Git repository. Tags are a great way to mark significant points in your project’s history, making it easier to manage releases and versions.
 
 
 
