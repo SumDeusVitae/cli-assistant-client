@@ -21,11 +21,19 @@ func callbackUpdate(cfg *config, args ...string) error {
 		if err != nil {
 			return err
 		}
-		command = exec.Command("sh", "-c", "mv $(go env GOPATH)/bin/cli-assistant-client $(go env GOPATH)/bin/qs")
-		_, err = command.Output()
+		command1 := exec.Command("go", "env", "GOPATH")
+		output, err := command1.Output()
 		if err != nil {
 			return err
 		}
+		command2 := exec.Command("sh", "-c", "mv ", string(output), "/bin/cli-assistant-client ", string(output), "/bin/qs")
+		_, err = command2.Output()
+		if err != nil {
+			return fmt.Errorf("command failed: %v\nOutput: %s", err, output)
+		}
+		// fmt.Println("You might need to run manually:")
+		// fmt.Println("		mv $(go env GOPATH)/bin/cli-assistant-client $(go env GOPATH)/bin/qs")
+
 		// Get the new version info
 		command = exec.Command("qs", "version")
 		b, err := command.Output()

@@ -7,7 +7,6 @@ import (
 
 func callbackAsk(cfg *config, args ...string) error {
 	if cfg.Variables.Outdated {
-		outdated()
 		return nil
 	}
 	if cfg.Variables.Api == "" {

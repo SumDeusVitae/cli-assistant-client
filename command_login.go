@@ -12,7 +12,6 @@ import (
 
 func callbackLogin(cfg *config, args ...string) error {
 	if cfg.Variables.Outdated {
-		outdated()
 		return nil
 	}
 	login, password := "", ""

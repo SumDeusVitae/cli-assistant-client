@@ -7,6 +7,9 @@ import (
 )
 
 func callbackVer(cfg *config, args ...string) error {
+	if cfg.Variables.Outdated {
+		return nil
+	}
 	// fmt.Printf("CURRENT!!! %s\n", cfg.Variables.Version)
 	info := check(cfg.Variables.Version)
 	fmt.Println(info)

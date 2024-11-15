@@ -6,7 +6,6 @@ import (
 
 func callbackWhoami(cfg *config, args ...string) error {
 	if cfg.Variables.Outdated {
-		outdated()
 		return nil
 	}
 
