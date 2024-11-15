@@ -41,7 +41,6 @@ func main() {
 		os.Exit(1)
 	}
 	if check {
-		outdated()
 		cfg.Variables.Outdated = true
 	}
 

@@ -12,6 +12,7 @@ import (
 
 func callbackRegister(cfg *config, args ...string) error {
 	if cfg.Variables.Outdated {
+		outdated()
 		return nil
 	}
 	// Login and Password
