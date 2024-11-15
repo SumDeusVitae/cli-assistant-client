@@ -8,8 +8,8 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Commands](#commands)
-- [Uninstall](#uninstall)
 - [Example](#example)
+- [Uninstall](#uninstall)
 - [License](#license)
 
 ## Introduction
@@ -107,21 +107,6 @@ qs q <your question here>
 - `env`:  Shows saved environmental variables
 - `update`:  Updates CLI to the latest version
 
-
-## Uninstall
-To uninstall CLI Assistant, follow the steps :
-
-  Locate the binary: Find the binary in your GOBIN or GOPATH/bin directory.
-  Remove the binary: Delete it from the terminal:
-
-```bash
-rm $(go env GOPATH)/bin/qs
-```
-  Remove the source code (optional):
-```bash
-rm -rf $(go env GOPATH)/src/github.com/SumDeusVitae/cli-assistant-client
-```
-
 ## Example
 <pre>
 user@DESKTOP:~/workspace$ qs q How do I add tag to git repo?
@@ -203,12 +188,26 @@ Here’s a quick example of the entire process:
    ```bash
    git push origin v1.0
    ```
-</pre>
+
 
 ### Conclusion
 
 That’s it! You have successfully created and pushed a tag to your Git repository. Tags are a great way to mark significant points in your project’s history, making it easier to manage releases and versions.
+</pre>
 
+## Uninstall
+To uninstall CLI Assistant, follow the steps :
+
+  Locate the binary: Find the binary in your GOBIN or GOPATH/bin directory.
+  Remove the binary: Delete it from the terminal:
+
+```bash
+rm $(go env GOPATH)/bin/qs
+```
+  Remove the source code (optional):
+```bash
+rm -rf $(go env GOPATH)/src/github.com/SumDeusVitae/cli-assistant-client
+```
 
 
 ## License

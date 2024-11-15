@@ -40,9 +40,7 @@ func main() {
 	if err != nil {
 		os.Exit(1)
 	}
-	if check {
-		cfg.Variables.Outdated = true
-	}
+	cfg.Variables.Outdated = check
 
 	runRep(cfg)
 }
