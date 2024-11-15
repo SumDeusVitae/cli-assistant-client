@@ -8,7 +8,7 @@ import (
 	"github.com/SumDeusVitae/cli-assistant-client/internal/version"
 )
 
-func callbackUpgrade(cfg *config, args ...string) error {
+func callbackUpdate(cfg *config, args ...string) error {
 	current := cfg.Variables.Version
 	notLatest, err := version.CheckUpdate(current)
 	if err != nil {
@@ -16,7 +16,7 @@ func callbackUpgrade(cfg *config, args ...string) error {
 	}
 	if notLatest {
 		// install the latest version
-		command := exec.Command("go", "install", "github.com/sumdeusvitae/cli-assistant-client@latest")
+		command := exec.Command("go", "install", "github.com/SumDeusVitae/cli-assistant-client@latest")
 		_, err := command.Output()
 		if err != nil {
 			return err

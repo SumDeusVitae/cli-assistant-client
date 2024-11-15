@@ -48,10 +48,10 @@ func getCommands() map[string]cliCommand {
 			description: "checks on version",
 			callback:    callbackVer,
 		},
-		"upgrade": {
-			name:        "upgrade",
-			description: "upgrades to last version",
-			callback:    callbackUpgrade,
+		"update": {
+			name:        "update",
+			description: "updates to the latest version",
+			callback:    callbackUpdate,
 		},
 	}
 }
