@@ -64,9 +64,9 @@ func CheckMajor(current string) (bool, error) {
 
 func (v *VersionInfo) PromptUpdateIfAvailable() {
 	if v.IsOutdated {
-		fmt.Fprintln(os.Stderr, "A new version of the qs CLI is available!")
+		fmt.Fprintln(os.Stderr, "A new version of the CLI Assistant is available!")
 		fmt.Fprintln(os.Stderr, "Please run the following command to update:")
-		fmt.Fprintf(os.Stderr, "  qs upgrade\n\n")
+		fmt.Fprintf(os.Stderr, "  qs update\n\n")
 	}
 }
 
