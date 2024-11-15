@@ -34,7 +34,7 @@ func callbackUpdate(cfg *config, args ...string) error {
 		}
 		re := regexp.MustCompile(`v\d+\.\d+\.\d+`)
 		version := re.FindString(string(b))
-		fmt.Printf("Successfully upgraded to %s!\n", version)
+		fmt.Printf("Successfully updated to %s!\n", version)
 	} else {
 		fmt.Println("Latest version already installed!")
 	}
