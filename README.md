@@ -63,11 +63,11 @@ This command will download, build, and install the `cli-assistant-client` comman
 ```bash
 go install github.com/SumDeusVitae/cli-assistant-client@latest
 ```
-After this, you can rename the binary:
+After this, rename the binary:
 ```bash
 mv $(go env GOPATH)/bin/cli-assistant-client $(go env GOPATH)/bin/qs
 ```
-Now, you can run your app using qs instead of cli-assistant-client.
+Now, you run your app using qs instead of cli-assistant-client.
 Run this command to check:
 ```bash
 qs version
@@ -76,24 +76,50 @@ If it didn't work try:
 ```bash
 cli-assistant-client version
 ```
-If it works instead that means that app installed correctly but you didn't rename binary correctly in your environment PATH
+If it works
+Perhaps rm didn't work due to permission issues.
+Try using cp to copy the file first, and then remove the original:
+```bash
+cp $(go env GOPATH)/bin/cli-assistant-client $(go env GOPATH)/bin/qs
+rm $(go env GOPATH)/bin/cli-assistant-client
+```
+
 
 
 ## Usage
-To run tool, use following commands
-For new users please register:
+
+To run CLI ASSISTANT, use following commands.
+
+### For New Users:
+Please register first. **Note:** Email is optional. It may be helpful for password recovery if you forget your password.
+
 ```bash
 qs register
 ```
-If you have an account you can simply login:
+
+### For Existing Users:
+If you already have an account, simply log in:
+
 ```bash
 qs login
 ```
 
-after you registered or logged in use:
+### Asking Questions:
+After registering or logging in, you can ask a question using the following command:
+
 ```bash
 qs q <your question here>
 ```
+
+This will return the response to your query. This is the core functionality of the tool.
+
+To see a list of available commands, use:
+
+```bash
+qs help
+```
+
+Alternatively, you can find the available commands in the "Commands" section below.
 
 
 ## Commands 
