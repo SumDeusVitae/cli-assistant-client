@@ -24,25 +24,16 @@ func callbackUpdate(cfg *config, args ...string) error {
 		}
 		command1 := exec.Command("go", "env", "GOPATH")
 		output, err := command1.Output()
-		fmt.Println("Output 1")
 		if err != nil {
 			return err
 		}
+		//
 		string1 := strings.TrimSpace(string(output)) + "/bin/cli-assistant-client"
-		fmt.Println("String1: ", string1)
 		string2 := strings.TrimSpace(string(output)) + "/bin/qs"
-		fmt.Println("String2: ", string2)
-		// uploading v0.3.0 for testing purposes
-
 		command2 := exec.Command("mv", string1, string2)
-		output2, err := command2.Output()
-		fmt.Println("Output 2")
-		fmt.Println(string(output2))
+		_, err = command2.Output()
 		if err != nil {
-			fmt.Printf("command failed: %v\nOutput: %s\n", err, output)
-			fmt.Println("You might need to manually run:")
-			fmt.Println("		mv $(go env GOPATH)/bin/cli-assistant-client $(go env GOPATH)/bin/qs")
-			return err
+			return fmt.Errorf("command failed: %v\nOutput: %s", err, output)
 		}
 
 		// Get the new version info
