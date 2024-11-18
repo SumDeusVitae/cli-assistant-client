@@ -7,7 +7,7 @@ import (
 )
 
 func callbackVer(cfg *config, args ...string) error {
-	// fmt.Printf("CURRENT!!! %s\n", cfg.Variables.Version)
+	// Checking if update required
 	info := check(cfg.Variables.Version)
 	fmt.Println(info)
 	if cfg.Variables.Outdated {

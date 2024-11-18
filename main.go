@@ -30,12 +30,11 @@ func main() {
 	cfg := &config{
 		assistantClient: cliClient,
 	}
+	// Getting local variavbles and storing them in our config struct
 	cfg.Variables.Login = variables.LoadoadVariable("login")
 	cfg.Variables.Password = variables.LoadoadVariable("password")
 	cfg.Variables.Api = variables.LoadoadVariable("apiKey")
-	// cfg.Variables.UserID = variables.LoadoadVariable("userId")
 	cfg.Variables.Version = strings.Trim(ver, "\n")
-	// fmt.Printf("version.txt context: %s\n", strings.Trim(ver, "\n"))
 	check, err := version.CheckMajor(cfg.Variables.Version)
 	if err != nil {
 		os.Exit(1)

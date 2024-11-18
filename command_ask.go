@@ -19,12 +19,13 @@ func callbackAsk(cfg *config, args ...string) error {
 
 	}
 	question := strings.Join(args, " ")
-	// fmt.Println("Question: \n", question)
 	fmt.Println("Working on respond...")
+	// Making request to the server
 	serverResp, err := cfg.assistantClient.Ask("gpt", cfg.Variables.Api, question)
 	if err != nil {
 		return err
 	}
+	// Checking if we received valid reply from the server
 	if serverResp.Reply.Valid {
 		fmt.Println()
 		fmt.Printf("Respond: \n%s\n", serverResp.Reply.String)
