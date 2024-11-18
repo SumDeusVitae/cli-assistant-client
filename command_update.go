@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os/exec"
 	"regexp"
+	"strings"
 
 	"github.com/SumDeusVitae/cli-assistant-client/internal/version"
 )
@@ -27,9 +28,9 @@ func callbackUpdate(cfg *config, args ...string) error {
 		if err != nil {
 			return err
 		}
-		string1 := string(output) + "/bin/cli-assistant-client "
+		string1 := strings.Join([]string{string(output), "/bin/cli-assistant-client"}, "")
 		fmt.Println("String1: ", string1)
-		string2 := string(output) + "/bin/qs"
+		string2 := strings.Join([]string{string(output), "/bin/qs"}, "")
 		fmt.Println("String2: ", string2)
 		// uploading v0.3.0 for testing purposes
 
