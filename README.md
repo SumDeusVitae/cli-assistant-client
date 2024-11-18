@@ -12,6 +12,7 @@
 - [Usage](#usage)
 - [Commands](#commands)
 - [Uninstall](#uninstall)
+- [Contributing](#contributing-)
 
 
 ## Introduction
@@ -156,6 +157,34 @@ rm $(go env GOPATH)/bin/qs
 rm -rf $(go env GOPATH)/src/github.com/SumDeusVitae/cli-assistant-client
 ```
 
+## Contributing 🤝 
 
-## License
-This project is licensed under the [MIT License](LICENSE).
+### Clone the repo
+
+```bash
+git clone https://github.com/sumdeusvitae/cli-assistant-client@latest
+cd cli-assistant-client
+```
+
+### Build the project
+
+```bash
+go build -o qs
+```
+
+### Run the project
+
+```bash
+./qs register
+./qs q <your question>
+```
+
+### Run the tests
+
+```bash
+go test ./...
+```
+
+### Submit a pull request
+
+If you'd like to contribute, please fork the repository and open a pull request to the `main` branch.
