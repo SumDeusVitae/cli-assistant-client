@@ -1,3 +1,4 @@
+![CI Status](https://github.com/SumDeusVitae/cli-assistant-client/blob/main/.github/workflows/CI.yml/badge.svg)
 <div align="center">
   <img src="https://github.com/SumDeusVitae/cli-assistant-client/blob/main/assistantHeader.png" />
 </div>
