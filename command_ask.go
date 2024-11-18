@@ -27,7 +27,7 @@ func callbackAsk(cfg *config, args ...string) error {
 	}
 	if serverResp.Reply.Valid {
 		fmt.Println()
-		fmt.Printf("Reply: \n%s\n", serverResp.Reply.String)
+		fmt.Printf("Respond: \n%s\n", serverResp.Reply.String)
 		fmt.Println()
 	} else {
 		fmt.Println()
