@@ -5,15 +5,21 @@
 # CLI Assistant
 ## Table of Contents
 - [Introduction](#introduction)
+- [Example](#example)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Commands](#commands)
-- [Example](#example)
 - [Uninstall](#uninstall)
 - [License](#license)
 
 ## Introduction
 CLI Assistant is a command-line tool that lets you ask questions and get answers directly in the terminal. It's perfect for situations where you don’t have access to a web browser, but still need quick answers or help solving problems. Whether you need a quick reminder, a bit of troubleshooting, or just some general knowledge, CLI Assistant has you covered—all from the comfort of your command line.
+
+## Example
+<p>
+    <img src="https://github.com/SumDeusVitae/cli-assistant-client/blob/main/cli-assistant.gif" width="100%" alt="CLI ASSISTANT Example">
+</p>
+
 
 ## Installation
 ### 1. Install Go 1.22 or later
@@ -133,93 +139,6 @@ Alternatively, you can find the available commands in the "Commands" section bel
 - `env`:  Shows saved environmental variables
 - `update`:  Updates CLI to the latest version
 
-## Example
-<pre>
-user@DESKTOP:~/workspace$ qs q How do I add tag to git repo?
-Working on respond...
-
-Reply: 
-Adding a tag to a Git repository is a straightforward process. Tags are used to mark specific points in your repository’s history, often used to denote releases or important milestones.
-
-Here’s how to add a tag:
-
-### 1. Create a Tag
-
-You can create two types of tags in Git: lightweight and annotated.
-
-#### Lightweight Tag
-
-A lightweight tag is simply a pointer to a specific commit. It does not contain additional information such as the tagger's name or date.
-
-```bash
-git tag <tagname>
-```
-
-#### Annotated Tag
-
-Annotated tags are recommended for most cases, as they store additional metadata such as the tagger's name, email, date, and a message.
-
-```bash
-git tag -a <tagname> -m "Your message here"
-```
-
-### 2. List Tags
-
-To see the tags you've created, you can list them with:
-
-```bash
-git tag
-```
-
-### 3. Push Tags to Remote
-
-By default, tags are not pushed to remote repositories when you run `git push`. To push a specific tag to the remote repository, use:
-
-```bash
-git push origin <tagname>
-```
-
-If you want to push all tags at once, you can use:
-
-```bash
-git push --tags
-```
-
-### 4. Checkout a Tag
-
-To check out a specific tag (detached HEAD state), you can use the following command:
-
-```bash
-git checkout <tagname>
-```
-
-### Example
-
-Here’s a quick example of the entire process:
-
-1. Create a new tag:
-
-   ```bash
-   git tag -a v1.0 -m "Release version 1.0"
-   ```
-
-2. List tags to confirm:
-
-   ```bash
-   git tag
-   ```
-
-3. Push the tag to the remote repository:
-
-   ```bash
-   git push origin v1.0
-   ```
-
-
-### Conclusion
-
-That’s it! You have successfully created and pushed a tag to your Git repository. Tags are a great way to mark significant points in your project’s history, making it easier to manage releases and versions.
-</pre>
 
 ## Uninstall
 To uninstall CLI Assistant, follow the steps :
