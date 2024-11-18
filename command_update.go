@@ -31,6 +31,7 @@ func callbackUpdate(cfg *config, args ...string) error {
 		fmt.Println("String1: ", string1)
 		string2 := string(output) + "/bin/qs"
 		fmt.Println("String2: ", string2)
+		// uploading v0.3.0 for testing purposes
 
 		command2 := exec.Command("sh", "-c", "mv ", string1, string2)
 		output2, err := command2.Output()
