@@ -15,6 +15,7 @@ func callbackWhoami(cfg *config, args ...string) error {
 		callbackHelp(cfg, args...)
 		return nil
 	}
+	// Checking if saved API valid
 	serverResp, err := cfg.assistantClient.Whoami(cfg.Variables.Api)
 	if err != nil {
 		if err.Error() == "unauthorized" {
@@ -25,7 +26,7 @@ func callbackWhoami(cfg *config, args ...string) error {
 		}
 		return err
 	}
-	fmt.Printf("You are logged as: %s\n", serverResp.Login)
+	fmt.Printf("You are logged in as: %s\n", serverResp.Login)
 	if serverResp.Email.Valid {
 		fmt.Printf("Email: %s\n", serverResp.Email.String)
 	}
