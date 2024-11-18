@@ -24,7 +24,7 @@ func callbackRegister(cfg *config, args ...string) error {
 
 	// Email optional
 	email := ""
-	fmt.Println("Please enter Email, will be helpfull if you lose your password")
+	fmt.Println("Please enter Email, will be helpful if you lose your password")
 	reader := bufio.NewReader(os.Stdin)
 	email, _ = reader.ReadString('\n')
 	email = strings.TrimSpace(email)
@@ -34,7 +34,7 @@ func callbackRegister(cfg *config, args ...string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("Successfully registerd as: %s\n", cfg.Variables.Login)
+	fmt.Printf("Successfully registered as: %s\n", cfg.Variables.Login)
 	// SAVING VARIABLES TO LOCAL
 
 	// fmt.Printf("Api Key: %s\n", serverResp.APIKey)
