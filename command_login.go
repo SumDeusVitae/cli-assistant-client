@@ -83,20 +83,12 @@ func callbackLogin(cfg *config, args ...string) error {
 		return err
 	}
 	fmt.Println("Logged In Successfully!")
-	// SAVE API KEY
+	// SAVE API KEY locally
 	cfg.Variables.Api = serverResp.APIKey
 	err = variables.SaveVariable("apiKey", serverResp.APIKey)
 	if err != nil {
 		log.Println("Couldn't save api to local variable")
 	}
-	/*
-		fmt.Printf("UserID: %s\n", serverResp.ID)
-		cfg.Variables.UserID = serverResp.ID
-		err = variables.SaveVariable("userId", serverResp.ID)
-		if err != nil {
-			log.Println("Couldn't save user id to local variable")
-		}
-	*/
 
 	return nil
 }
