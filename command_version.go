@@ -9,10 +9,7 @@ import (
 func callbackVer(cfg *config, args ...string) error {
 	// Checking if update required
 	info := check(cfg.Variables.Version)
-	fmt.Println(info)
-	if cfg.Variables.Outdated {
-		outdated()
-	}
+	fmt.Println("Current version: ", info)
 
 	return nil
 }
