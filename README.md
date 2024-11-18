@@ -2,7 +2,6 @@
   <img src="https://github.com/SumDeusVitae/cli-assistant-client/blob/main/assistantHeader.png" />
 </div>
 
-# CLI Assistant
 ## Table of Contents
 - [Introduction](#introduction)
 - [Example](#example)
@@ -10,7 +9,7 @@
 - [Usage](#usage)
 - [Commands](#commands)
 - [Uninstall](#uninstall)
-- [License](#license)
+
 
 ## Introduction
 CLI Assistant is a command-line tool that lets you ask questions and get answers directly in the terminal. It's perfect for situations where you don’t have access to a web browser, but still need quick answers or help solving problems. Whether you need a quick reminder, a bit of troubleshooting, or just some general knowledge, CLI Assistant has you covered—all from the comfort of your command line.
