@@ -23,11 +23,15 @@ func callbackUpdate(cfg *config, args ...string) error {
 		}
 		command1 := exec.Command("go", "env", "GOPATH")
 		output, err := command1.Output()
+		fmt.Println("Output 1")
+		fmt.Println(string(output))
 		if err != nil {
 			return err
 		}
 		command2 := exec.Command("sh", "-c", "mv ", string(output), "/bin/cli-assistant-client ", string(output), "/bin/qs")
-		_, err = command2.Output()
+		output2, err := command2.Output()
+		fmt.Println("Output 2")
+		fmt.Println(string(output2))
 		if err != nil {
 			return fmt.Errorf("command failed: %v\nOutput: %s", err, output)
 		}
