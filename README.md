@@ -1,4 +1,6 @@
-![CI Status](https://github.com/SumDeusVitae/cli-assistant-client/blob/main/.github/workflows/CI.yml/badge.svg)
+[![Go Reference](https://pkg.go.dev/badge/github.com/SumDeusVitae/cli-assistant-client#section-directories.svg)](https://pkg.go.dev/github.com/SumDeusVitae/cli-assistant-client#section-directories)
+[![Go Report Card](https://goreportcard.com/badge/github.com/SumDeusVitae/cli-assistant-client)](https://goreportcard.com/report/github.com/SumDeusVitae/cli-assistant-client)
+![CI Status](https://github.com/SumDeusVitae/cli-assistant-client/actions/workflows/CI.yml/badge.svg)
 <div align="center">
   <img src="https://github.com/SumDeusVitae/cli-assistant-client/blob/main/assistantHeader.png" />
 </div>
