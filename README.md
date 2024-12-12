@@ -1,6 +1,8 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/SumDeusVitae/cli-assistant-client#section-directories.svg)](https://pkg.go.dev/github.com/SumDeusVitae/cli-assistant-client#section-directories)
 [![Go Report Card](https://goreportcard.com/badge/github.com/SumDeusVitae/cli-assistant-client)](https://goreportcard.com/report/github.com/SumDeusVitae/cli-assistant-client)
 ![CI Status](https://github.com/SumDeusVitae/cli-assistant-client/actions/workflows/CI.yml/badge.svg)
+<p>Server for our assistant: <a href="https://github.com/sumdeusvitae/cli-assistant#readme" target="_blank">Server - CLI Assistant</a>
+</p>
 <div align="center">
   <img src="https://github.com/SumDeusVitae/cli-assistant-client/blob/main/assistantHeader.png" />
 </div>
